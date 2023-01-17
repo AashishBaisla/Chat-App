@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+    border: none;
+    outline: none;
+}
+  
+html {
+  height: 100%; width: 100%;
+  margin: 0; padding: 0;
+}
+
+body {
+  height: 100%; width: 100vw;
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  text-decoration: none;
+  list-style: none;
+  border: none;
+  outline: none;
+  
+  background: var(--body-color);
+}
+.signupBody {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+.signupBody .signUpContainer {
+    height: 100%;
+    width: 100%;
+    padding: 5%;
+    padding-top: 20%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    background-color: rgb(255, 132, 0);
+}
+.signupBody .signUpContainer > div {
+    width: 100%;
+    position: relative;
+}
+.signupBody .signUpContainer img {
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    width: 18px;
+    height: 18px;
+}
+.signupBody .signUpContainer header {
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: 0.4rem;
+    color: rgba(0, 0, 0, 0.7);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+.signupBody .signUpContainer .validationText {
+    width: fit-content;
+    height: 1.5rem;
+    padding: 0 0.8rem;
+    border-radius: 0.4rem;
+    margin-bottom: 0.3rem;
+    color: red;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.signupBody .signUpContainer input {
+    width: 100%;
+    height: 3rem;
+    padding: 0 1.5rem 0 2.5rem ;
+    margin-bottom: 0.8rem;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.1);
+}
+
+.signupBody .signUpContainer #SignUp {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-align: center;
+    letter-spacing: 0.05rem;
+    margin-bottom: 1rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.2);
+}
+.signupBody .signUpContainer .haveAccount {
+    text-align: center;
+    color:  rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+}
+.signupBody .signUpContainer #clickHere {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
+@media screen and (min-width: 480px) {
+
+    body {
+        font-size: 18px;
+    }
+
+    .signupBody .signUpContainer {
+        margin: auto;
+        height: fit-content;
+        max-width: 420px;
+        padding: 3rem 2rem;
+        border-radius: 0.4rem;
+        border: 2px solid rgb(128, 128, 128, 0.3);
+
+        justify-content: center;
+    }
+    .signupBody .signUpContainer input {
+        margin-bottom: 1.2rem;
+    }
+    .signupBody .signUpContainer input:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    .signupBody .signUpContainer #SignUp:hover {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    .signupBody .signUpContainer #clickHere:hover {
+        text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: 350px) {
+
+    body {
+        font-size: 14px;
+    }
+    .signupBody .signUpContainer {
+        width: 100%;
+        padding: 15% 4% 4% 4%;
+        
+    }
+    .signupBody .signUpContainer header {
+        font-size: 30px;
+    }
+    .signupBody .signUpContainer input {
+        height: 2rem;
+        padding: 0 1.5rem 0 2.5rem ;
+        margin-bottom: 0.5rem;
+    }
+    .signupBody .signUpContainer div img {
+        width: 16px;
+        height: 16px;
+        top: 8px;
+    }
+    .signupBody .signUpContainer #SignUp {
+        margin-top: 1rem;
+    }
+}

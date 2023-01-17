@@ -1,0 +1,130 @@
+.homeBody .group {
+  width: 100%;
+  height: max-content;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  background: var(--group-backgroundColor);
+  border-radius: var(--group-borderRadius);
+  box-shadow: var(--cards-shadow);
+  backdrop-filter: blur(12.4px);
+  -webkit-backdrop-filter: blur(12.4px);
+}
+
+.homeBody .group > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.homeBody .group img {
+  width: 20px;
+  height: 20px;
+}
+
+.suggestionCard {
+  background: var(--cards-backgroundColor);
+  overflow-y: scroll;
+  width: 100%;
+  height: 96vh;
+}
+
+.suggestionCard .container {
+  width: 100%;
+  height: 100%;
+  padding: 0.8rem 0.8rem 2rem 0.8rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 14px; 
+}
+
+.suggestionCard header {
+  width: 100%;
+  height: 1.6rem;
+  z-index: 1;
+  position: -webkit-sticky;
+  position: sticky; 
+  top: 0;
+  align-items: center;
+  padding: 0.2rem 0;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+  color: var(--muted-textColor);
+  background-color: var(--cardsHeader-backgoundColor);
+  backdrop-filter: blur(12.4px);
+  -webkit-backdrop-filter: blur(12.4px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suggestionCard header img {
+  position: absolute;
+  left: 15px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+}
+
+.suggestionCard .container > div {
+  width: 100%;
+  line-height: 1.2rem;
+}
+.suggestionCard .container .group {
+  padding: 0.5rem;
+  height: max-content;
+  overflow-y: scroll;
+  gap: 15px;
+}
+.suggestionCard .container .group .linkClass {
+  width: 100%;
+  height: 100%;
+}
+.suggestionCard .container .group .user {
+  width: 100%;
+}
+.suggestionCard .container .group .user .userInfo {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.suggestionCard .container .group .user .userInfo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.suggestionCard .container .group .user .userInfo .details {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.suggestionCard .container .group > .user:not(:last-child) .userInfo .details {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.suggestionCard .container .group .user .userInfo .details .userName {
+  text-overflow: ellipsis;
+}
+.suggestionCard .container .group .user .userInfo .details .userhandle {
+  text-overflow: ellipsis;
+  font-weight: 100;
+  font-size: small;
+  color: var(--muted-textColor);
+}

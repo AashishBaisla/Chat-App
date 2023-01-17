@@ -1,0 +1,216 @@
+/*-TO MAKE SCROLLBAR-*/
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.chatCard {
+  width: 100%; height: 96vh;
+  z-index: 3;
+  overflow-y: scroll;
+  background-image: linear-gradient( 135deg, #FCCF31 10%, #F55555 100%);
+}
+
+.chatCard header {
+  height: 3.2rem;
+  padding: 0.3rem 0.5rem;
+  text-transform: none;
+  justify-content: space-between;
+
+  width: 100%;
+  z-index: 1;
+  position: -webkit-sticky;
+  position: sticky; 
+  top: 0;
+  align-items: center;
+  letter-spacing: 0.05rem;
+  text-align: center;
+  font-size: 16px;
+  color: var(--muted-textColor);
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0.5px 10px 2px rgba(128, 128, 128, 0.1);
+
+  display: flex;
+  align-items: center;
+}
+
+.chatCard header .backIcon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+}
+
+.chatCard header .userReceiver {
+  width: 100% ;height:100%;
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.chatCard header .userReceiver .profilePhoto{
+  border-radius: 50%;
+  height: 38px;
+  width: 38px;
+}
+
+.chatCard header .userReceiver .details{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 1rem;
+}
+
+.chatCard header .userReceiver .details  span{
+  color: var(--primary-textColor);
+  font-weight: 600;
+}
+.chatCard header .userReceiver .details  p {
+  font-size: small;
+}
+
+.chatCard .right .dropdown {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatCard .container {
+  width: 100%; height: 100%;
+  padding: 6rem 0.8rem 0.8rem 0.8rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.chatCard .container .noMessages{
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.chatCard .container .outgoing{
+  max-width: 80%;
+  margin-left: auto;
+
+  display: flex;
+}
+.chatCard .container .incoming{
+  max-width: 80%;
+  margin-right: auto;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.chatCard .container .outgoing .msg,
+.chatCard .container .incoming .msg{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.chatCard .container .outgoing  .msg{
+  align-items: flex-end;
+}
+.chatCard .container .incoming  .msg{
+  align-items: flex-start;
+}
+.chatCard .container .chat  .msg p{
+  width: 100%;
+  font-size: 14px;
+  hyphens: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 2px 10px;
+  box-shadow: 0 0 32px rgb(0 0 0 / 4%),
+          0rem 16px 16px -16px rgb(0 0 0 / 5%);
+}
+.chatCard .container .outgoing .msg span {
+  margin-right: 0;
+  padding-right: 5px;
+  font-size: x-small;
+  color: var(--muted-textColor);
+}
+.chatCard .container .incoming .msg span {
+  margin-left: 0;
+  padding-left: 5px;
+  font-size: x-small;
+  color: var(--muted-textColor);
+}
+
+.chatCard .container .outgoing  p{
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 10px 10px 0 10px;
+  text-align: right;
+}
+.chatCard .container .incoming  p{
+  background: rgba(0, 0, 0, 0.1);
+  color: black;
+  border-radius: 10px 10px 10px 0;
+  text-align: left;
+}
+.chatCard .container .incoming .recieverImage{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.chatCard .typingArea{
+  width: 100%;
+  height: 36px;
+  padding: 0 8px 8px 8px;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.chatCard .typingArea input{
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  padding: 0 1rem;
+  color: var(--primary-textColor);
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0.5px 0.5px 5px 1px rgba(0, 0, 0, 0.2);
+}
+.chatCard .typingArea .sendImage {
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+}
+.chatCard .typingArea .sendButton {
+  cursor: pointer;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+  transition: all 0.3s ease;
+}
+ 
+
+@media screen and (min-width: 450px) {
+
+}
+  

@@ -1,0 +1,230 @@
+:root {
+    --cards-backgroundColor:  rgb(240, 240, 240);
+}
+
+.homeBody .group {
+  width: 100%;
+  height: max-content;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  background: var(--group-backgroundColor);
+  border-radius: var(--group-borderRadius);
+  box-shadow: var(--cards-shadow);
+  backdrop-filter: blur(12.4px);
+  -webkit-backdrop-filter: blur(12.4px);
+}
+
+.homeBody .group > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+  background-color: yellow;
+}
+
+.homeBody .group img {
+  width: 20px;
+  height: 20px;
+}
+
+.homeBody .searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+.homeBody .searchBar img{
+  position: absolute;
+  left: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.homeBody .searchBar input {
+  width:100%;
+  font-size: 16px;
+  padding: 5px 15px 5px 45px;
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  background-color: var(--search-backgroundColor);
+  border-radius: var(--group-borderRadius);
+  transition: all 0.2s ease;
+}
+.homeBody .searchBar input::placeholder {
+  color: rgba(128, 128, 128, 0.5);
+}
+
+.messageCard {
+    width: 100%;
+    height: 96vh;
+    background: var(--cards-backgroundColor);
+  }
+
+.messageCard header {
+    width: 100%;
+    height: 1.6rem;
+    z-index: 1;
+    position: -webkit-sticky;
+    position: sticky; 
+    top: 0;
+    align-items: center;
+    padding: 0.2rem 0;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 16px;
+    color: var(--muted-textColor);
+    background-color: var(--cardsHeader-backgoundColor);
+    backdrop-filter: blur(12.4px);
+    -webkit-backdrop-filter: blur(12.4px);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.messageCard header img {
+    position: absolute;
+    left: 15px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+}
+
+.messageCard .container {
+    width: 100%;
+    height: 100%;
+    padding: 0.8rem 0.8rem 2rem 0.8rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 14px; 
+}
+  
+  .messageCard .container .searchBar .displaySearch {
+    z-index: 10;
+    border-radius: var(--cards-borderRadius);
+    padding: 0.5rem;
+    position: absolute;
+    width: 600px;
+    top: 200px;
+    height: max-content;
+    max-height: 300px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: scroll;
+    background-color: white;
+  }
+  .messageCard .container .searchBar .displaySearch .user {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .messageCard .container .searchBar .displaySearch .user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  }
+  .messageCard .container .searchBar .displaySearch .user .userInfo {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    line-height: 0.5rem;
+    gap: 10px;
+  }
+  .messageCard .container .searchBar .displaySearch .user .userInfo .username{
+    font-size: small;
+  }
+  
+  .messageCard .container .group {
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  
+  .messageCard .container .group > #nav {
+    height: max-content;
+    width: 100%; height: 100%;
+  }
+  .messageCard .container .group #nav .user {
+    width: 100%;
+    height: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    color: var(--primary-textColor);
+  }
+  
+  .messageCard .container .group #nav .user img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+  
+  .messageCard .container .group #nav .user .nameMsg {
+    width: 100%; height: 100%;
+    line-height: 1rem;
+  
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  
+  .messageCard .container .group #nav .user .nameMsg p,
+  .messageCard .container .group #nav .user .nameMsg span {
+    width: 100%;
+    height: 100%;
+  
+    text-align: left;
+  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .messageCard .container .group #nav .user .nameMsg p {
+    font-size: 16px;
+  }
+  .messageCard .container .group #nav .user .nameMsg span {
+    font-size: 12px;
+  }
+  .messageCard .container .group #nav .user .sentAt {
+    width: 25%; height: 100%;
+    font-size: 10px;
+    
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  
+  .messageCard .container .group > #nav:not(:last-child) .user .nameMsg {
+    border-bottom: 0.5px solid rgba(128, 128, 128, 0.1);
+  }
+  
+  .messageCard .container .group .noConversation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }

@@ -1,0 +1,8 @@
+:root {
+    --cardsHeader-backgoundColor: yellow;
+}
+
+/*-TO MAKE SCROLLBAR-*/
+::-webkit-scrollbar {
+    width: 0px;
+  }
