@@ -1,11 +1,15 @@
 .navigationCard {
-  height: 93vh;
+  width: 100%; height: 2.5rem;
   padding: 0.3rem 0.5rem;
 
   z-index: 2;
   position: fixed;
   left: 0; bottom: 0;  
-  background-color: var(--cards-backgroundColor);
+
+  background: var(--cards-backgroundColor);
+  border-radius: var(--cards-borderRadius);
+  box-shadow: var(--cards-shadow);
+  border: var(--cards-border);
   
   display: flex;
   align-items: center;
@@ -23,6 +27,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.navigationCard .mainNavigation .logOut {
+  display: block;
+}
+
+.navigationCard .bottomNav {
+  display: none;
 }
 
 .navigationCard .mainNavigation > div,
@@ -52,14 +64,28 @@
   background-color: rgba(13, 124, 168, 0.2);
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 768px) {
   .navigationCard {
     width: max-content; height: 100%;
+    min-width: 170px;
     background: var(--cards-backgroundColor);
     
     position: relative;
     flex-direction: column;
     gap: 2px;
+  }
+
+  .navigationCard p {
+    width: 100%;
+    text-align: left;
+    display: block;
+  }
+  .navigationCard .mainNavigation > div,
+  .navigationCard .bottomNav > div {
+    justify-content: flex-start;
+  }
+  .navigationCard > div img {
+    margin-right: 0.8rem;
   }
 
   .navigationCard .helloCard {
@@ -72,8 +98,7 @@
     
     display: flex;
     align-items: center;
-    justify-content:space-between;
-    gap: 8px;
+    justify-content: center;
   }
   .navigationCard .helloCard img {
     width: 50px;
@@ -83,18 +108,19 @@
   .navigationCard .helloCard p {
     line-height: 1rem;
     font-size: medium;
-    color: var(--primary-text-color);
   }
   .navigationCard .helloCard p span {
     font-size: small;
-    color: var(--muted-textColor);
   }
 
   .navigationCard .mainNavigation {
     padding: 20px 0;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 8px;
+    gap: 14px;
+  }
+  .navigationCard .mainNavigation .logOut {
+    display: none;
   }
   .navigationCard .bottomNav {
     width: 100%; height: max-content;
@@ -114,20 +140,5 @@
   .navigationCard .mainNavigation > div:hover,
   .navigationCard .bottomNav > div:hover {
     background-color: rgba(128, 128, 128, 0.1);
-  }
-}
-
-@media screen and (min-width: 650px) {
-  .navigationCard p {
-    width: 100%;
-    text-align: left;
-    display: block;
-  }
-  .navigationCard .mainNavigation > div,
-  .navigationCard .bottomNav > div {
-    justify-content: flex-start;
-  }
-  .navigationCard > div img {
-    margin-right: 0.8rem;
   }
 }

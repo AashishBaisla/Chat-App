@@ -1,7 +1,4 @@
 import { db } from "../dbConfig.js";
-import jwt from "jsonwebtoken";
-
-//new conv
 
 export const newConv = (req, res) => {
   const query = `SELECT * FROM conversations 
@@ -27,9 +24,7 @@ export const newConv = (req, res) => {
         });
       }
     })
-
 };
-
 
 export const convList = (req, res) => {
   const id = req.params.userID ;
@@ -51,18 +46,12 @@ export const convList = (req, res) => {
 };
 
 export const deleteConversation = (req, res) => {
-  const token = req.cookies.authtoken;
-  if (!token) return res.status(401).json("Not logged in!");
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
-    if (err) return res.status(403).json("Token is not valid!");
-  
     const q = "DELETE FROM conversations WHERE `conversation_id`=?" ;
 
     db.query(q, [req.params.conversation_id], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.status(200).json(data);
     });
-  })
 };
 

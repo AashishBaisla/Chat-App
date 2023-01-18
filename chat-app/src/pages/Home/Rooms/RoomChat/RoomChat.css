@@ -4,37 +4,37 @@
 }
 
 .chatCard {
-  width: 100%;
-  height: 96vh;
-  background: var(--cards-backgroundColor);
-  border-radius: var(--cards-borderRadius);
-  box-shadow: var(--cards-shadow);
-  border: var(--cards-border);
-  overflow-y: scroll;
+    width: 100%;
+    height: 96vh;
+    background: var(--cards-backgroundColor);
+    border-radius: var(--cards-borderRadius);
+    box-shadow: var(--cards-shadow);
+    border: var(--cards-border);
+    overflow-y: scroll;
 }
 
 .chatCard header {
-  width: 100%;
-  height: 3rem;
-  z-index: 1;
-  position: -webkit-sticky;
-  position: sticky; 
-  top: 0;
-  align-items: center;
-  padding: 0.2rem 0;
-  letter-spacing: 0.05rem;
-  text-align: center;
-  font-size: 16px;
-  color: var(--muted-textColor);
-  background-color: var(--cardsHeader-backgoundColor);
-  backdrop-filter: blur(12.4px);
-  -webkit-backdrop-filter: blur(12.4px);
+    width: 100%;
+    height: 3rem;
+    z-index: 1;
+    position: -webkit-sticky;
+    position: sticky; 
+    top: 0;
+    align-items: center;
+    padding: 0.2rem 0;
+    letter-spacing: 0.05rem;
+    text-align: center;
+    font-size: 16px;
+    color: var(--muted-textColor);
+    background-color: var(--cardsHeader-backgoundColor);
+    backdrop-filter: blur(12.4px);
+    -webkit-backdrop-filter: blur(12.4px);
 
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    overflow: hidden;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .chatCard header .backIcon {
@@ -50,7 +50,7 @@
 
 .chatCard header .userReceiver {
   width: 100% ;height:100%;
-  padding-left: 2rem;
+  padding-left: 3rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -126,6 +126,9 @@
 }
 .chatCard .container .incoming  .msg{
   align-items: flex-start;
+}
+.chatCard .container .incoming  .msg .nameMsg span {
+    font-size: small;
 }
 .chatCard .container .chat  .msg p{
   width: 100%;

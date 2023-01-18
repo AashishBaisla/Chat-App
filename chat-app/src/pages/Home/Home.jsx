@@ -6,7 +6,8 @@ import Users from "./Users/Users";
 import NavigationCard from './NavigationCard/NavigationCard' ;
 import Messages from "./Messages/Messages";
 import ChatBox from "./Chatbox/ChatBox";
-import LogOutConfirm from "./LogOutConfirm";
+import Rooms from "./Rooms/Rooms";
+import RoomChat from "./Rooms/RoomChat/RoomChat";
 
 function Home() {
 
@@ -28,11 +29,13 @@ function Home() {
         </div>
 
         <div className='middleSide'>
-            <LogOutConfirm/>
           <Routes>
               <Route exact path="/" element={<Users/>}/>
               <Route exact path="messages" element={<Messages />} />
                 <Route exact path="messages/:convID/:receiverID" element={<ChatBox/>} />
+
+                <Route exact path="rooms" element={<Rooms />} />
+                  <Route exact path="rooms/:room_id" element={<RoomChat />} />
           </Routes>
         </div>
 

@@ -1,13 +1,11 @@
 import "./NavigationCard.css"
 import { Outlet } from "react-router-dom"
 import { useState, useEffect, useContext } from 'react';
-import { PopupContext } from "../../../context/PopupContext";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/authContext";
 import { makeRequest } from "../../../axios";
 
 function NavigationCard() {
-  /*const { setLogOut } = useContext(PopupContext) ;*/
   const [activeIndex, setActiveIndex] = useState(0)
   const [data, setData] = useState()
   const { currentUser} = useContext(AuthContext)
@@ -25,12 +23,19 @@ function NavigationCard() {
     getData();
   }, []);
 
+  const handleLogOut = async (e) => {
+    e.preventDefault();
+      localStorage.clear()
+      navigate("/login");
+  };
+
 
   const navigate = useNavigate();
   const handleClick = (index) => {
     setActiveIndex(index);
     if (index === 0)  return navigate("/");
     if (index === 1)  return navigate("/messages");
+    if (index === 2)  return navigate("/rooms");
   };
   
   return (
@@ -57,11 +62,22 @@ function NavigationCard() {
               <img src="/icons/message-blue.png"/>
               <p>Messages</p>
           </div>
+
+          <div className={activeIndex === 2 ? "active" : ""}
+               onClick={() => handleClick(2)}>
+              <img src="/icons/group.png"/>
+              <p>Rooms</p>
+          </div>
+
+          <div className="logOut" onClick={handleLogOut}>
+            <img src="/icons/logout-red.png"/>
+            <p>Log Out</p>
+          </div>
       </div>
 
       <div className="bottomNav">
 
-        <div className="logOut" /*onClick={() => setLogOut(true)}*/>
+        <div className="logOut" onClick={handleLogOut}>
             <img src="/icons/logout-red.png"/>
             <p>Log Out</p>
         </div>

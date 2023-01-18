@@ -1,0 +1,232 @@
+.roomCard {
+  width: 100%;
+  height: 96vh;
+  background: var(--cards-backgroundColor);
+  border-radius: var(--cards-borderRadius);
+  box-shadow: var(--cards-shadow);
+  border: var(--cards-border);  
+  overflow-y: scroll;
+}
+  
+.roomCard header {
+  width: 100%;
+  height: 1.6rem;
+  z-index: 1;
+  position: -webkit-sticky;
+  position: sticky; 
+  top: 0;
+  align-items: center;
+  padding: 0.2rem 0;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+  color: var(--muted-textColor);
+  background-color: var(--cardsHeader-backgoundColor);
+  backdrop-filter: blur(12.4px);
+  -webkit-backdrop-filter: blur(12.4px);
+  overflow: hidden;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roomCard header .backIcon {
+  position: absolute;
+  left: 15px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.roomCard .container {
+  width: 100%;
+  height: 100%;
+  padding: 0.8rem 0.8rem 2rem 0.8rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 14px; 
+}
+
+.roomCard .container .createRoom {
+    width: 100%; height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.roomCard .container .createRoom .button {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.roomCard .container .createRoom .button button{
+    width: 180px; height: 100%;
+    padding: 0 6px; 
+    border-radius: 8px;
+    color: white;
+    background-color: black;
+}
+
+.roomCard .container .createRoom .createRoomInput {
+    width: 70%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.roomCard .container .createRoom .createRoomInput input {
+    width: 100%; height: 100%;
+    padding: 0 1.5rem 0 1.5rem ;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.1);
+}
+.roomCard .container .createRoom .createRoomInput img {
+    width: 28px;
+    height: 28px;
+}
+.roomCard .container .createRoom .createRoomInput button {
+    width: 100px; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: green;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.1);
+}
+
+.roomCard .container .group {
+  width: 100%;
+  height: max-content;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  background: var(--group-backgroundColor);
+  border-radius: var(--group-borderRadius);
+  box-shadow: var(--cards-shadow);
+  backdrop-filter: blur(12.4px);
+  -webkit-backdrop-filter: blur(12.4px);
+}
+
+.roomCard .container .group > div {
+  width: 100%; height: max-content;
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  cursor: pointer;
+}
+
+.roomCard .container .group img {
+    width: 20px;
+    height: 20px;
+  }
+
+.roomCard .container .group > div .left {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  color: var(--primary-textColor);
+}
+.roomCard .container .group > div .joinFirst {
+    width: 85px; height: 100%;
+    font-size: small;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
+.roomCard .container .group > div .left img {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+    
+.roomCard .container .group >div .left .nameMsg {
+  width: 100%; height: 100%;
+  line-height: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.roomCard .container .group .left .nameMsg p,
+.roomCard .container .group .left .nameMsg span {
+  width: 100%;
+  height: 100%;
+
+  text-align: left;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.roomCard .container .group .left .nameMsg p {
+  font-size: 16px;
+}
+.roomCard .container .group .left .nameMsg span {
+  font-size: 12px;
+  color: rgba(128, 128, 128, 0.9);
+}
+.roomCard .container .group .right {
+  width: 25%; height: 100%;
+  font-size: 10px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.roomCard .container .group .right button {
+  width: 85px ;height: 25px;
+  border-radius: 6px;
+  padding: 0 6px;
+}
+.roomCard .container .group .right .leaveButton {
+  background-color: rgba(255, 0, 0, 0.699);
+  color: white;
+}
+.roomCard .container .group .right .joinButton {
+  background-color: rgba(72, 128, 8, 0.815);
+  color: white;
+}
+.roomCard .container .group .right img {
+  width: 18px ;height: 18px;
+}
+    
+.roomCard .container .group > div:not(:last-child) {
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.1);
+}
+
+.roomCard .container .group .noConversation {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}

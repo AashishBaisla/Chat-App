@@ -1,76 +1,126 @@
-import "./ChatBox.css";
+import "./RoomChat.css";
 import { useEffect, useState, useRef, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { makeRequest } from "../../../axios";
-import { AuthContext } from "../../../context/authContext";
+import { makeRequest } from "../../../../axios";
+import { AuthContext } from "../../../../context/authContext";
 import moment from "moment";
-import socket from "../../../io";
+import socket from "../../../../io";
 
-const ChatBox = () => {
+const RoomChat = () => {
   const {currentUser} = useContext(AuthContext) ;
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollRef = useRef();
   const [userInfo, setUserInfo] = useState([]);
+  const [currUserdata, setCurrUserData] = useState()
+  const [userJoin, setUserJoin] = useState([]);
+  const [roomInfo, setRoomInfo] = useState();
 
-  const conversation_id = parseInt(useLocation().pathname.split("/")[2]);
-  const receiverID = parseInt(useLocation().pathname.split("/")[3]);
-
-  useEffect(() => {
-    socket.on("getMessage", (data) => {
-      setArrivalMessage({
-        sender_user_id: data.senderID,
-        msg: data.msg,
-        sent_at: Date.now(),
-      });
-      console.log({"get":arrivalMessage});
-    });
-  }, []);
+  const room_id = parseInt(useLocation().pathname.split("/")[2]);
 
   useEffect(() => {
-    arrivalMessage && receiverID===arrivalMessage.sender_user_id
-      && setMessages((prev) => [...prev, arrivalMessage]);
-  }, [arrivalMessage]);
-
-  useEffect(() => {
-    const getuserInfo = async () => {
+    const getData = async () => {
       try {
-        makeRequest.get("/users/userID/" + receiverID).then((res) => {
-          setUserInfo(res.data);
+        await makeRequest.get(`/users/userID/${currentUser.userID}`).then((res) => {
+          setCurrUserData(res.data);
         })
       } catch (err) {
         console.log(err);
       }
     }
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await makeRequest.get(`/rooms/roominfo/${room_id}`).then((res) => {
+            setRoomInfo(res.data);
+            console.log({"roominfo:":roomInfo})
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, []);
+
+
+  useEffect(() => {
+    socket?.emit("joinRoom", room_id);
+  }, [currentUser]);
+
+  useEffect(() => {
+    socket.on("JoinMessage", (data) => {
+      setUserJoin({
+        room_id: data.room,
+        user: data.user,
+        text: data.text,
+        sent_at: Date.now(),
+      });
+    });
+  }, []);
+
+  /*{userJoin?.map((u, i) => (
+    <div key={i}>
+        {userJoin.user}<br/>{userJoin.text}
+    </div>
+))}
+  useEffect(() => {
+    userJoin && room_id===userJoin.room_id
+      && setUserJoin((prev) => [...prev, userJoin]);
+  }, [userJoin]);*/
+
+  useEffect(() => {
+    socket.on("getRoomMessage", (data) => {
+      setArrivalMessage({
+        room_id: data.room,
+        full_name: data.sender_name,
+        sender_user_id: data.senderID,
+        msg: data.msg,
+        sent_at: Date.now(),
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    arrivalMessage && room_id===arrivalMessage.room_id
+      && setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage]);
+
+
+
+  useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await makeRequest.get(`/messages/${conversation_id}`);
+        const res = await makeRequest.get(`/rooms/roomMessages/${room_id}`);
         setMessages(res.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getuserInfo();
     getMessages();
-  }, [conversation_id]);
+  }, [room_id]);
 
   const handleSubmit = async (e) => {
 
     const message = {
-        conversation_id,
-        senderID: currentUser.userID,
+        room_id,
+        senderID: currUserdata.userID,
         msg: newMessage
     };
 
-    socket.emit("sendMessage", {
-        senderID: currentUser.userID,
-        receiverID,
+    socket.emit("sendRoomMessage", {
+        room: room_id,
+        sender_name: currUserdata.full_name,
+        sender_user_id: currentUser.userID,
         msg: newMessage,
     });
 
   try {
-    const res = await makeRequest.post("/messages", message);
+    const res = await makeRequest.post("/rooms/messages", message);
+    console.log(res.data);
     setMessages([...messages, res.data]);
     setNewMessage("");
   } catch (err) {
@@ -97,7 +147,7 @@ const ChatBox = () => {
             <div className="userReceiver">
               <img className="profilePhoto" src="/icons/default.jpg" alt="" />
                 <div className="details">
-                  <span>{userInfo.full_name}</span>
+                  <span>{roomInfo}</span>
                   <p>{userInfo.username}</p>
               </div>
             </div>
@@ -105,6 +155,7 @@ const ChatBox = () => {
     
 
       <div className="container">
+
         {(Object.keys(messages)).length !== 0 ? 
           messages.map((m, i) => (
               <div ref={scrollRef} key={i} className={(m.sender_user_id === currentUser.userID)
@@ -115,7 +166,11 @@ const ChatBox = () => {
                       </div>}
 
                     <div className="msg">
-                      <p>{m.msg}</p>
+                        <div className="nameMsg">
+                            {!(m.sender_user_id === currentUser.userID) ?
+                            <span>{m.full_name}</span> : "" }
+                            <p>{m.msg}</p>
+                        </div>
                       <span>{moment(m.sent_at).format("h:mm a")}</span>
                     </div>
               </div>
@@ -131,7 +186,7 @@ const ChatBox = () => {
           type="text"
           name="message"
           className="input-field"
-          placeholder="Message.."
+          placeholder={`Hi ${currUserdata?.full_name} type something`}
           autoComplete="off"
           onChange={(e) => setNewMessage(e.target.value)}
           onKeyUp={(e) => {
@@ -149,4 +204,4 @@ const ChatBox = () => {
   );
 }
 
-export default ChatBox;
+export default RoomChat;

@@ -1,5 +1,5 @@
 import "./Messages.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/authContext";
 import { makeRequest } from "../../../axios";
@@ -40,6 +40,10 @@ function Messages() {
     navigate(-1);
   }
 
+  const handleMessage = (conversation_id, receiverID) => {
+    navigate(`/messages/${conversation_id}/${receiverID}`) ;
+  }
+
   const deleteConv = async (conversation_id) => {
     try {
       await makeRequest.delete(`/conversations/${conversation_id}`);
@@ -53,7 +57,7 @@ function Messages() {
   return (
       <div className="messageCard">
       <header>
-          <img src="/icons/back-b.png" onClick={handleBack}/>
+          <img className="backIcon" src="/icons/back-b.png" onClick={handleBack}/>
           <h5>Messages</h5>
         </header>
 
@@ -67,20 +71,18 @@ function Messages() {
           <div className="group">
           {(Object.keys(convList)).length !== 0 ? convList?.map((c) => (
             <div key={c.conversation_id}>
-                <Link  id="nav" to={`/messages/${c.conversation_id}/${c.receiverID}`}>
-                  <div className="user">
+                  <div className="user" onClick={() => {handleMessage(c.conversation_id, c.receiverID)}}>
                     <img className="userImg" 
                       src="/icons/default.jpg" alt="user-Image"/>
                     <div className="nameMsg">
                       <p>{c?.full_name}</p>
-                      <span>{c?.last_message}</span>
+                      <span>{c.last_message ? c.last_message : "No Message"}</span>
                     </div>
-                    <p className="sentAt">
-                      {moment(c.sent_at).fromNow()}
-                    </p>
                   </div>
-                </Link>
-                <img src="/icons/delete.png" alt="deleteIcon" onClick={() => deleteConv(c.conversation_id)}/>
+                    <p className="sentAtDelete">
+                      {c.sent_at ? moment(c.sent_at).fromNow() : ""}
+                      <img src="/icons/delete.png" alt="deleteIcon" onClick={() => deleteConv(c.conversation_id)}/>
+                    </p>
                 </div>))
             : <div className="noConversation">
                 No Conversation

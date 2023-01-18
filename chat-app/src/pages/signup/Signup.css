@@ -1,3 +1,12 @@
+:root {
+    --cardsHeader-backgoundColor: yellow;
+}
+
+/*-TO MAKE SCROLLBAR-*/
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0; padding: 0;
@@ -41,7 +50,7 @@ body {
     justify-content: flex-start;
     flex-direction: column;
 
-    background-color: rgb(255, 132, 0);
+    background-color: gray;
 }
 .signupBody .signUpContainer > div {
     width: 100%;

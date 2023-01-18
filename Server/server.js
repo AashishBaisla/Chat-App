@@ -2,45 +2,27 @@ import * as dotenv from 'dotenv' ;
 dotenv.config() ;
 import express from "express";
 import cors from "cors";
-import multer from "multer";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import conversationRoutes from "./routes/ConversationBox.js";
+import roomsRoutes from "./routes/rooms.js";
 import messageRoutes from "./routes/messages.js";
 const app = express();
 import { Server } from "socket.io";
 
-//middlewares
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", true);
     next();
 });
 app.use(express.json());
-app.use(cors({
-  origin: "http://localhost:3000"
-}));
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(cookieParser());
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, "../Frontend/public/upload");
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + file.originalname);
-    },
-  });
-  
-const upload = multer({ storage: storage });
-  
-app.post("/api/upload", upload.single("file"), (req, res) => {
-  const file = req.file;
-  res.status(200).json(file.filename);
-});
   
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/conversations", conversationRoutes);
+app.use("/api/rooms", roomsRoutes);
 app.use("/api/messages", messageRoutes);
 
 const server = app.listen(process.env.PORT, () => {
@@ -90,7 +72,7 @@ io.on("connection", (socket) => {
   socket.on("sendMessage", ({ senderID, receiverID, msg }) => {
     const user = getUser(receiverID);
     
-    console.log(receiverID)
+    console.log({"receiverID:":receiverID})
 
     io.to(user?.socketID).emit("getMessage", {
       senderID,
@@ -98,22 +80,31 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("connect_error", (err) => {
-    console.log(`connect_error due to ${err.message}`);
-  });
 
 
-  //send and get notifications
-  socket.on("sendNotification", ({senderName, receiverID, type }) => {
-    const user = getUser(receiverID);
+  // Listen for the client to join a chat room
+  socket.on('joinRoom', (room) => {
+    // Leave any existing room
+    socket.leaveAll();
     
-    console.log(receiverID)
+    // Join the new room
+    socket.join(room);
 
-    io.to(user?.socketID).emit("getNotification", {
-      senderName,
-      type,
+    // Send a message to the room that the user has joined
+    io.to(room).emit('JoinMessage', {
+        room: room,
+        user: 'Server',
+        text: `User ${socket.id} has joined the room.`
     });
   });
+
+    // Listen for messages from clients
+    socket.on('sendRoomMessage', (message) => {
+        // Send the message to the room that the user is in
+        io.to(message.room).emit('getRoomMessage', message);
+    });
+
+
 
   socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);

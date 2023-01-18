@@ -1,36 +1,4 @@
-:root {
-    --cards-backgroundColor:  rgb(240, 240, 240);
-}
 
-.homeBody .group {
-  width: 100%;
-  height: max-content;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  background: var(--group-backgroundColor);
-  border-radius: var(--group-borderRadius);
-  box-shadow: var(--cards-shadow);
-  backdrop-filter: blur(12.4px);
-  -webkit-backdrop-filter: blur(12.4px);
-}
-
-.homeBody .group > div {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content:flex-start;
-  gap: 0.5rem;
-  cursor: pointer;
-  background-color: yellow;
-}
-
-.homeBody .group img {
-  width: 20px;
-  height: 20px;
-}
 
 .homeBody .searchBar {
   display: flex;
@@ -63,6 +31,10 @@
     width: 100%;
     height: 96vh;
     background: var(--cards-backgroundColor);
+    border-radius: var(--cards-borderRadius);
+    box-shadow: var(--cards-shadow);
+    border: var(--cards-border);
+    overflow-y: scroll;
   }
 
 .messageCard header {
@@ -82,18 +54,22 @@
     background-color: var(--cardsHeader-backgoundColor);
     backdrop-filter: blur(12.4px);
     -webkit-backdrop-filter: blur(12.4px);
+
+    overflow: hidden;
   
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.messageCard header img {
+.messageCard header .backIcon {
     position: absolute;
     left: 15px;
     top: 4px;
     width: 14px;
     height: 14px;
+
+    cursor: pointer;
 }
 
 .messageCard .container {
@@ -149,17 +125,43 @@
   .messageCard .container .searchBar .displaySearch .user .userInfo .username{
     font-size: small;
   }
-  
+
   .messageCard .container .group {
-    gap: 10px;
+    width: 100%;
+    height: max-content;
     padding: 10px 14px;
+  
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  
+    background: var(--group-backgroundColor);
+    border-radius: var(--group-borderRadius);
+    box-shadow: var(--cards-shadow);
+    backdrop-filter: blur(12.4px);
+    -webkit-backdrop-filter: blur(12.4px);
   }
   
-  .messageCard .container .group > #nav {
+  .messageCard .container .group > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .messageCard .container .group img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .messageCard .container .group > div {
     height: max-content;
     width: 100%; height: 100%;
   }
-  .messageCard .container .group #nav .user {
+  .messageCard .container .group > div .user {
     width: 100%;
     height: 100%;
   
@@ -170,13 +172,13 @@
     color: var(--primary-textColor);
   }
   
-  .messageCard .container .group #nav .user img {
+  .messageCard .container .group > div .user img {
     height: 40px;
     width: 40px;
     border-radius: 50%;
   }
   
-  .messageCard .container .group #nav .user .nameMsg {
+  .messageCard .container .group >div .user .nameMsg {
     width: 100%; height: 100%;
     line-height: 1rem;
   
@@ -186,8 +188,8 @@
     flex-direction: column;
   }
   
-  .messageCard .container .group #nav .user .nameMsg p,
-  .messageCard .container .group #nav .user .nameMsg span {
+  .messageCard .container .group .user .nameMsg p,
+  .messageCard .container .group .user .nameMsg span {
     width: 100%;
     height: 100%;
   
@@ -201,22 +203,28 @@
     align-items: center;
     justify-content: flex-start;
   }
-  .messageCard .container .group #nav .user .nameMsg p {
+  .messageCard .container .group .user .nameMsg p {
     font-size: 16px;
   }
-  .messageCard .container .group #nav .user .nameMsg span {
+  .messageCard .container .group .user .nameMsg span {
     font-size: 12px;
+    color: rgba(128, 128, 128, 0.9);
   }
-  .messageCard .container .group #nav .user .sentAt {
+  .messageCard .container .group .sentAtDelete {
     width: 25%; height: 100%;
     font-size: 10px;
     
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .messageCard .container .group > .sentAtDelete img {
+    width: 18px ;height: 18px;
   }
   
-  .messageCard .container .group > #nav:not(:last-child) .user .nameMsg {
+  .messageCard .container .group > div:not(:last-child) .user .nameMsg {
     border-bottom: 0.5px solid rgba(128, 128, 128, 0.1);
   }
   

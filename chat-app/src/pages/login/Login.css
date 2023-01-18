@@ -1,3 +1,38 @@
+:root {
+    --cardsHeader-backgoundColor: yellow;
+}
+
+/*-TO MAKE SCROLLBAR-*/
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+    border: none;
+    outline: none;
+}
+  
+html {
+  height: 100%; width: 100%;
+  margin: 0; padding: 0;
+}
+
+body {
+  height: 100%; width: 100vw;
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  text-decoration: none;
+  list-style: none;
+  border: none;
+  outline: none;
+  
+  background: var(--body-color);
+}
+
 .loginBody {
     display: flex;
     align-items: center;
@@ -17,7 +52,7 @@
     justify-content: flex-start;
     flex-direction: column;
 
-    background-color: rgb(255, 132, 0);
+    background-color: gray;
 }
 .loginBody .logInContainer div {
     width: 100%;
